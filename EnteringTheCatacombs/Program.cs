@@ -52,11 +52,9 @@ namespace EnteringTheCatacombs
                 Console.WriteLine("The password must also contain one Uppercase, one Lowercase, and one Number");
                 string input = Console.ReadLine() ?? ""; //this normalizes our input in case of null
                 Validator password = new Validator(input);
-                bool isValid = password.Validate(input);
-                if (isValid) { Console.WriteLine("The password is good"); }
-                if (!isValid) { Console.WriteLine("Please try again"); } 
+                var (isValid, message) = password.Validate(input);
+                Console.WriteLine(message);
             }
-            
         }
 
 

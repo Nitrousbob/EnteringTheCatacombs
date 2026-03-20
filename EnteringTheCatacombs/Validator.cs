@@ -19,30 +19,32 @@ namespace EnteringTheCatacombs
             this.input = input;
         }
 
-        public bool Validate(string input)
+        public (bool isValid, string message) Validate(string input)
         {
             bool hasUC = false;
             bool hasLC = false;
             bool hasNum = false;
-            bool allTypes = false;
+
             if (input.Length < 6 || input.Length > 13)
             {
-                Console.WriteLine("Password needs to be between 5 and 13 characters");
-                return false;
+                return (false, "Password needs to be between 5 and 13 characters");
             }
 
             foreach (char c in input)
             {
                 if (c == 'T' || c == '&')
                 {
-                    Console.WriteLine("cannot contain the capitol 'T' or '&'");
-                    return false;
+                    return (false, "cannot contain the capitol 'T' or '&'");
                 }
                 if (char.IsUpper(c)) { hasUC = true; }
                 if (char.IsLower(c)) { hasLC = true; }
                 if (char.IsDigit(c)) { hasNum = true; }
             }
-            return (hasUC && hasLC && hasNum);
+            if (hasUC && hasLC && hasNum)
+            {
+                return (true, "Password is the correct makeup");
+            }
+            return (false, "Password must contain uppercase, lowercase, and a number.");
         }
     }
 }
