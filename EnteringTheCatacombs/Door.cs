@@ -120,8 +120,7 @@ namespace EnteringTheCatacombs
 
         public void ChangePasscode()
         {
-            string newCode = PassCode;
-            Console.WriteLine("Enter the current passcode.");
+            //Console.WriteLine("Enter the current passcode.");
             string oldCode = EnterPasscode(false);
             if (oldCode == PassCode)
             {
@@ -136,7 +135,7 @@ namespace EnteringTheCatacombs
 
         public string EnterPasscode(bool newKey)
         {
-            string prompt = newKey ? "Enter new passcode: " : "Unlock passcode: ";
+            string prompt = newKey ? "Enter new passcode: " : "Enter current passcode: ";
             string? code;
             do
             {
