@@ -1,4 +1,6 @@
-﻿namespace EnteringTheCatacombs
+﻿using System.Reflection.Metadata;
+
+namespace EnteringTheCatacombs
 {
     internal class Program
     {
@@ -31,14 +33,20 @@
             {
                 Console.WriteLine($"{card} a {card.GetCardType()}");
             }
+
+            bool doorFun = true;
+            //create a door
+            Door door = new Door("BigDoor", Door.DoorState.Closed, 87654);
+
+            door.DoorMenu(door);
         }
 
-        public static List<Card> CreateDeck()
+        public static List<Card> CreateDeck() //create the deck with some nested for loops
         {
-            List<Card> deck = new List<Card>();
+            List<Card> deck = new List<Card>();  //create the list we are going to send back
             Card.CardColor color;
 
-            for (int i = 0; i < 4; i++)  //Make a loop for all colors
+            for (int i = 0; i < 4; i++)  //Make a loop for all colors  (hardcoded size of loop) better match enum
             {
                 switch (i)  //change the card color each iteration of i
                 {
@@ -52,7 +60,7 @@
                         color = Card.CardColor.Blue;
                         break;
                     default:
-                        color = Card.CardColor.Yellow;
+                        color = Card.CardColor.Yellow;  //what if I want to change the size of the enum and be flexible
                         break;
                 }
 
@@ -63,7 +71,23 @@
                     deck.Add(card);  //add the card to the deck
                 }
             }
-            return deck;
+            return deck;  //send the deck back after its created
+        }
+
+        public static List<Card> KreateDeck() //alternate version with less code using foreach
+        {
+            List<Card> deck = new List<Card>();  //create the list we are going to send back
+
+            foreach (Card.CardColor color in Enum.GetValues(typeof(Card.CardColor))) //use the size of CardColors to make the loop iterate
+            {
+                foreach (Card.Rank rank in Enum.GetValues(typeof(Card.Rank)))  //use the size of Ranks enum to make the loop iterate
+                {
+                    //bottom of the nest
+                    Card card = new Card(color, rank);  //make a new card here during each iteration
+                    deck.Add(card); //add the new card to the list
+                }
+            }
+            return deck;  //send the deck back after its created
         }
     }
 }

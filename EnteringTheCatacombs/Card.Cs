@@ -33,7 +33,6 @@ namespace EnteringTheCatacombs
 
         public Rank CardRank { get; set; }
         public CardColor Color { get; set; }
-
         public Card(CardColor color, Rank rank)
         {
             CardRank = rank;
