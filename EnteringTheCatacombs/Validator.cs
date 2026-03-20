@@ -25,11 +25,11 @@ namespace EnteringTheCatacombs
             bool hasLC = false;
             bool hasNum = false;
             bool allTypes = false;
-                if (input.Length < 5 || input.Length > 13) 
-                {
-                    Console.WriteLine("Password needs to be between 5 and 13 characters");
-                    return false; 
-                }
+            if (input.Length < 6 || input.Length > 13)
+            {
+                Console.WriteLine("Password needs to be between 5 and 13 characters");
+                return false;
+            }
 
             foreach (char c in input)
             {
@@ -38,22 +38,11 @@ namespace EnteringTheCatacombs
                     Console.WriteLine("cannot contain the capitol 'T' or '&'");
                     return false;
                 }
-
-                if (char.IsUpper('c')) { hasUC = true; }
-                if (char.IsLower('c')) { hasLC = true; }
-                if (char.IsDigit('c')) { hasNum = true; }
-                //if (hasUC && hasLC && hasNum) { return false; }
+                if (char.IsUpper(c)) { hasUC = true; }
+                if (char.IsLower(c)) { hasLC = true; }
+                if (char.IsDigit(c)) { hasNum = true; }
             }
-            return true;
-        }
-
-        public void PasswordValidator(string input)
-        {
-        //foreach with a string lets you get its characters!
-        // foreach (char letter in word) {... }
-        //char has static methods to categorize letters!
-        //char.IsUpper('T'), char.IsLower('t'), char.isDigit('4')
-
+            return (hasUC && hasLC && hasNum);
         }
     }
 }
