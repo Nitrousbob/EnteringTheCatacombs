@@ -21,13 +21,21 @@ namespace EnteringTheCatacombs
 
         public bool Validate(string input)
         {
-                foreach (char c in input)
+                if (input.Length < 5 || input.Length > 13) 
                 {
-                    if (c == 'T') { Console.WriteLine("cannot contain the capitol T"); }
-                    if (c == '&') { Console.WriteLine("cannot contain the & symbol"); }
-                return false;
+                    Console.WriteLine("Password needs to be between 5 and 13 characters");
+                    return false; 
                 }
-                return true;
+
+            foreach (char c in input)
+            {
+                if (c == 'T' || c == '&')
+                {
+                    Console.WriteLine("cannot contain the capitol 'T' or '&'");
+                    return false;
+                }
+            }
+            return true;
         }
 
         public void PasswordValidator(string input)
