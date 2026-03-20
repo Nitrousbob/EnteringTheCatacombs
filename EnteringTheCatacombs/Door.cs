@@ -34,6 +34,7 @@ namespace EnteringTheCatacombs
         public void DoorMenu(Door door)
         {
             bool doorFun = true;
+
             while (doorFun)
             {
                 char input;
@@ -48,7 +49,6 @@ namespace EnteringTheCatacombs
                 {
                     ChangePasscode();
                 }
-            //Console.ReadLine();  // pause between door actions made for funky flow
             }
         }
 

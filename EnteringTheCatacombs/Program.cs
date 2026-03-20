@@ -1,4 +1,5 @@
-﻿using System.Reflection.Metadata;
+﻿using System.ComponentModel;
+using System.Reflection.Metadata;
 
 namespace EnteringTheCatacombs
 {
@@ -6,46 +7,50 @@ namespace EnteringTheCatacombs
     {
         static void Main(string[] args)
         {
-            Point[] points = new Point[2];
-            Console.Title = "Entering the Catacombs";
-            Console.WriteLine("Entering the Catacombs!");
+            //Point[] points = new Point[2];
+            //Console.Title = "Entering the Catacombs";
+            //Console.WriteLine("Entering the Catacombs!");
 
-            points[0] = new Point(2, 3);
-            points[1] = new Point(-4, 0);
+            //points[0] = new Point(2, 3);
+            //points[1] = new Point(-4, 0);
 
-            Console.WriteLine($"Point 1: {points[0]}");
-            Console.WriteLine($"Point 2: {points[1]}");
+            //Console.WriteLine($"Point 1: {points[0]}");
+            //Console.WriteLine($"Point 2: {points[1]}");
 
-            TheColor hotColor = new(200, 200, 0);
-            Console.WriteLine($"HotColor {hotColor}");
-            TheColor coldColor = TheColor.Blue;
-            Console.WriteLine($"ColdColor {coldColor}");
+            //TheColor hotColor = new(200, 200, 0);
+            //Console.WriteLine($"HotColor {hotColor}");
+            //TheColor coldColor = TheColor.Blue;
+            //Console.WriteLine($"ColdColor {coldColor}");
 
-            Card goodCard = new(Card.CardColor.Red, Card.Rank.One);
-            Console.WriteLine($"GoodCard {goodCard} a {goodCard.GetCardType()}");
+            //Card goodCard = new(Card.CardColor.Red, Card.Rank.One);
+            //Console.WriteLine($"GoodCard {goodCard} a {goodCard.GetCardType()}");
 
-            Card awesomeCard = new(Card.CardColor.Green, Card.Rank.Dollar);
-            Console.WriteLine($"AwesomeCard {awesomeCard} a {awesomeCard.GetCardType()}");
+            //Card awesomeCard = new(Card.CardColor.Green, Card.Rank.Dollar);
+            //Console.WriteLine($"AwesomeCard {awesomeCard} a {awesomeCard.GetCardType()}");
             
-            List<Card> deck = CreateDeck();
+            //List<Card> deck = CreateDeck();
 
-            foreach (Card card in deck)
-            {
-                Console.WriteLine($"{card} a {card.GetCardType()}");
-            }
+            //foreach (Card card in deck)
+            //{
+            //    Console.WriteLine($"{card} a {card.GetCardType()}");
+            //}
 
-            string? code; //grab a code for the door prior to trying the door out.
-            do
-            {
-                Console.WriteLine("Create a passcode for the door.");
-                code = Console.ReadLine();
-            }
-            while (string.IsNullOrWhiteSpace(code) || code.Length != 5 || !code.All(char.IsDigit));
+            //string? code; //grab a code for the door prior to trying the door out.
+            //do
+            //{
+            //    Console.WriteLine("Create a passcode for the door.");
+            //    code = Console.ReadLine();
+            //}
+            //while (string.IsNullOrWhiteSpace(code) || code.Length != 5 || !code.All(char.IsDigit));
             
-            Door door = new Door("BigDoor", Door.DoorState.Closed, code);
-            door.DoorMenu(door);
+            //Door door = new Door("BigDoor", Door.DoorState.Closed, code);
+            //door.DoorMenu(door);
+
+            
         }
 
+
+        //maybe move the card stuff to the card class or deck class
         public static List<Card> CreateDeck() //create the deck with some nested for loops
         {
             List<Card> deck = new List<Card>();  //create the list we are going to send back
