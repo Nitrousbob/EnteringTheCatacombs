@@ -19,17 +19,15 @@ namespace EnteringTheCatacombs
             this.input = input;
         }
 
-        public string AskForPassword(string input)
+        public bool Validate(string input)
         {
-            if (input != null)
-            {
                 foreach (char c in input)
                 {
                     if (c == 'T') { Console.WriteLine("cannot contain the capitol T"); }
                     if (c == '&') { Console.WriteLine("cannot contain the & symbol"); }
+                return false;
                 }
-            }
-            return input;
+                return true;
         }
 
         public void PasswordValidator(string input)

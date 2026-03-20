@@ -45,12 +45,15 @@ namespace EnteringTheCatacombs
 
             //Door door = new Door("BigDoor", Door.DoorState.Closed, code);
             //door.DoorMenu(door);
-            bool menu = true;
-            while (menu)
+
+            while (true)
             {
                 Console.WriteLine("Create a password between 5-13 characters, no capital T, and no &.");
                 string input = Console.ReadLine() ?? ""; //this normalizes our input in case of null
                 Validator password = new Validator(input);
+                bool isValid = password.Validate(input);
+                if (isValid) { Console.WriteLine("The password is good"); }
+                if (!isValid) { Console.WriteLine("Please try again"); } 
             }
             
         }
