@@ -48,11 +48,11 @@ namespace EnteringTheCatacombs
 
             while (true)
             {
-                Console.WriteLine("Create a password between 5-13 characters, no capital T, and no &.");
+                Console.WriteLine("Create a password between 6-13 characters, no capital T, and no &.");
                 Console.WriteLine("The password must also contain one Uppercase, one Lowercase, and one Number");
                 string input = Console.ReadLine() ?? ""; //this normalizes our input in case of null
                 Validator password = new Validator(input);
-                var (isValid, message) = password.Validate(input);
+                var (isValid, message) = password.Validate();
                 Console.WriteLine(message);
             }
         }
