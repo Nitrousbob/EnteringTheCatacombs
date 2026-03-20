@@ -36,8 +36,9 @@ namespace EnteringTheCatacombs
 
             bool doorFun = true;
             //create a door
-            Door door = new Door("BigDoor", Door.DoorState.Closed, 87654);
-
+            Door door = new Door("BigDoor", Door.DoorState.Closed, 00000);
+            Console.WriteLine("What is your desired passcode of numbers.");
+            door.PassCode = door.EnterPasskey(true);
             door.DoorMenu(door);
         }
 

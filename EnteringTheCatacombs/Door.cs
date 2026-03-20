@@ -19,7 +19,7 @@
             Open,
             Closed
         }
-        public int PassCode { get; private set; }
+        public int PassCode { get; set; }
         public string Name { get; set; }
         public DoorState State { get; set; }
 
@@ -35,9 +35,19 @@
             bool doorFun = true;
             while (doorFun)
             {
+                char input;
                 Console.WriteLine("You are at a door.");
-                door.DoorAction();
-                Console.Read();  // pause between door actions
+                do Console.WriteLine("Would you like to [U]se the door, [C]hange the passcode?");
+                while (!char.TryParse(Console.ReadLine(), out input));
+                if (input == 'U' || input == 'u')
+                {
+                    door.DoorAction();
+                }
+                if (input == 'C' || input == 'c')
+                {
+                    ChangePasscode();
+                }
+            Console.ReadLine();  // pause between door actions
             }
         }
 
@@ -54,6 +64,7 @@
                 if (PassCode == code)
                 {
                     //update DoorState if successful
+                    Console.WriteLine("You have unlocked the door.");
                     State = DoorState.Closed;
                     return;
                 }
@@ -64,10 +75,8 @@
                     return;
                 }
 
-            }
-
-            //could be else if
-            if (State == DoorState.Closed)
+            } 
+            else if (State == DoorState.Closed)
             {
                 //The door closed state is closed and unlocked
                 char input;
@@ -77,11 +86,13 @@
                 {
                     Console.WriteLine("You have locked the door.");
                     State = DoorState.Locked;
+                    return;
                 }
                 else if (input == 'O' || input == 'o')
                 {
                     Console.WriteLine("You have opened the door.");
                     State = DoorState.Open;
+                    return;
                 }
                 else
                 {
@@ -89,8 +100,7 @@
                 }
             }
 
-            //could be else
-            if (State == DoorState.Open)
+            else //if (State == DoorState.Open)
             {
                 char input;
                 do Console.WriteLine("[C]lose the door?");
@@ -119,13 +129,8 @@
             else
             {
                 Console.WriteLine("You have failed to give us a good code.");
-                //do not change the PassCode
             }
-            //if correct
-            //ask for new Passcode (5 numbers) string may be better
-            //check new PassCode is correct int and 5 long
-            //check inputstring.length or something
-            //update PassCode
+            
         }
 
         public int EnterPasskey(bool newKey)
