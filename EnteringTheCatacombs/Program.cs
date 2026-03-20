@@ -27,7 +27,7 @@ namespace EnteringTheCatacombs
 
             //Card awesomeCard = new(Card.CardColor.Green, Card.Rank.Dollar);
             //Console.WriteLine($"AwesomeCard {awesomeCard} a {awesomeCard.GetCardType()}");
-            
+
             //List<Card> deck = CreateDeck();
 
             //foreach (Card card in deck)
@@ -42,10 +42,16 @@ namespace EnteringTheCatacombs
             //    code = Console.ReadLine();
             //}
             //while (string.IsNullOrWhiteSpace(code) || code.Length != 5 || !code.All(char.IsDigit));
-            
+
             //Door door = new Door("BigDoor", Door.DoorState.Closed, code);
             //door.DoorMenu(door);
-
+            bool menu = true;
+            while (menu)
+            {
+                Console.WriteLine("Create a password between 5-13 characters, no capital T, and no &.");
+                string input = Console.ReadLine() ?? ""; //this normalizes our input in case of null
+                Validator password = new Validator(input);
+            }
             
         }
 

@@ -19,11 +19,8 @@ namespace EnteringTheCatacombs
             this.input = input;
         }
 
-        public string AskForPassword()
+        public string AskForPassword(string input)
         {
-            string? input;
-            Console.WriteLine("Create a password between 5-13 characters, no capital T, and no &.");
-            input = Console.ReadLine();
             if (input != null)
             {
                 foreach (char c in input)
