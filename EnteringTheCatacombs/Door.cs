@@ -1,4 +1,5 @@
-﻿namespace EnteringTheCatacombs
+﻿using System.Linq;
+namespace EnteringTheCatacombs
 {
     internal class Door
     {
@@ -19,11 +20,11 @@
             Open,
             Closed
         }
-        public int PassCode { get; set; }
+        public string PassCode { get; private set; }
         public string Name { get; set; }
         public DoorState State { get; set; }
 
-        public Door(string name, DoorState state, int code)
+        public Door(string name, DoorState state, string code)
         {
             Name = name;
             State = state;
@@ -47,7 +48,7 @@
                 {
                     ChangePasscode();
                 }
-            Console.ReadLine();  // pause between door actions
+            //Console.ReadLine();  // pause between door actions made for funky flow
             }
         }
 
@@ -57,9 +58,9 @@
 
             if (State == DoorState.Locked) //door options are Unlock, need passcode
             {
-                int code = 0;
+                string code;
                 //prompt to enter PassCode, check if correct
-                code = EnterPasskey(false);
+                code = EnterPasscode(false);
 
                 if (PassCode == code)
                 {
@@ -119,12 +120,12 @@
 
         public void ChangePasscode()
         {
-            int newCode = PassCode;
-            Console.WriteLine("Enter the current pass code.");
-            int oldCode = EnterPasskey(false);
+            string newCode = PassCode;
+            Console.WriteLine("Enter the current passcode.");
+            string oldCode = EnterPasscode(false);
             if (oldCode == PassCode)
             {
-                PassCode = EnterPasskey(true);
+                PassCode = EnterPasscode(true);
             }
             else
             {
@@ -133,24 +134,34 @@
             
         }
 
-        public int EnterPasskey(bool newKey)
+        public string EnterPasscode(bool newKey)
         {
-            int code;
-            if (!newKey)
+            string prompt = newKey ? "Enter new passcode: " : "Unlock passcode: ";
+            string? code;
+            do
             {
-                do Console.WriteLine("Unlock PassKey: ");
-                while (!int.TryParse(Console.ReadLine(), out code));
-                //return code;
+                Console.WriteLine(prompt);
+                code = Console.ReadLine();
             }
-            else
-            {
-                do Console.WriteLine("Enter new PassKey: ");
-                while (!int.TryParse(Console.ReadLine(), out code));
-                //return code;
-            }
-            //validation of new passkey, hmm, may need string
-
+            while (string.IsNullOrWhiteSpace(code) || code.Length != 5 || !code.All(char.IsDigit));
             return code;
         }
+
+
+            //if (!newKey)
+            //{
+            //    do Console.WriteLine("Unlock passcode: ");
+            //    while (Console.ReadLine(), out code));
+            //    //return code;
+            //}
+            //else
+            //{
+            //    do Console.WriteLine("Enter new passcode: ");
+            //    while (!string.TryParse(Console.ReadLine(), out code));
+            //    //return code;
+            //}
+
+            //return code;
+        
     }
 }

@@ -34,11 +34,15 @@ namespace EnteringTheCatacombs
                 Console.WriteLine($"{card} a {card.GetCardType()}");
             }
 
-            bool doorFun = true;
-            //create a door
-            Door door = new Door("BigDoor", Door.DoorState.Closed, 00000);
-            Console.WriteLine("What is your desired passcode of numbers.");
-            door.PassCode = door.EnterPasskey(true);
+            string? code; //grab a code for the door prior to trying the door out.
+            do
+            {
+                Console.WriteLine("Create a passcode for the door.");
+                code = Console.ReadLine();
+            }
+            while (string.IsNullOrWhiteSpace(code) || code.Length != 5 || !code.All(char.IsDigit));
+            
+            Door door = new Door("BigDoor", Door.DoorState.Closed, code);
             door.DoorMenu(door);
         }
 
